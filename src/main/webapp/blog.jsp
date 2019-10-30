@@ -23,129 +23,66 @@
  
 
 <html>
+	<head>
+		<link type="text/css" rel="stylesheet" href="/stylesheets/home.css" />
+	</head>
+	
+	<body>
+	  	<div id = header>
+	  		<img id = "header_image" src="/header.jpg" alt="header Image">
+		  	<div class = "header_title">
+		  		<h1 class= "title">The Cuddly Potato</h1>
+		  		<p class = "subtitle"><b>THE GO-TO BLOG FOR THE POTATO ENTHUSIAST</b></p>
+		  	</div>
+		  	
+	  	</div>
+	  	<hr>
+	    <ul id = menu>
+	    	<li class = menu><a href='/'>HOME</a></li>
+	    	<li class = menu>POSTS</li>
+	    	<li class = menu><a href='/blog.jsp'>CREATE POST</a></li>
+	    	<li class = menu>SUBSCRIBE</li>
+	    	<li class = "menu"><a href='/blog'>LOGIN</a></li>
+	    </ul>
+	    <hr>
+	    <h2>Create a Post</h2>
+	<%
 
-<head>
-   <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
- </head>
+    	UserService userService = UserServiceFactory.getUserService();
+    	User user = userService.getCurrentUser();
 
- 
-
-  <body>
-
- 
-
-<%
-
-    /* String guestbookName = request.getParameter("guestbookName");
-
-    if (guestbookName == null) {
-
-        guestbookName = "default";
-
-    } 
-
-    pageContext.setAttribute("guestbookName", guestbookName);*/
-
-    UserService userService = UserServiceFactory.getUserService();
-
-    User user = userService.getCurrentUser();
-
-    if (user != null) {
-
-      pageContext.setAttribute("user", user);
-
-%>
-
-<p>Hello, ${fn:escapeXml(user.nickname)}! (You can
-
-<a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">sign out</a>.)</p>
-
-<%
-
-    } else {
-
-%>
-
-<p>Hello!
-
-<a href="<%= userService.createLoginURL(request.getRequestURI()) %>">Sign in</a>
-
-to be able to post.</p>
-
-<%
-
-    }
-
-%>
-
- 
-
-<%
-
-
-    ObjectifyService.register(Post.class);
-
-	List<Post> posts = ObjectifyService.ofy().load().type(Post.class).list();   
-
-	Collections.sort(posts); 
-
-    if (posts.isEmpty()) {
-
-        %>
-
-        <p>Cuddly Potato Blog has no posts.</p>
-
-        <%
-
-    } else {
-
-        %>
-
-        <p>Posts in Cuddly Potato Blog.</p>
-
-        <%
-
-        for (Post post : posts) {
-
-            pageContext.setAttribute("post_content", post.getContent());
-
-            pageContext.setAttribute("post_user", post.getUser());
-            
-            pageContext.setAttribute("post_date", post.getDate());
-            
-            pageContext.setAttribute("post_title", post.getTitle());
-
-                %>
-				<h1><b>${fn:escapeXml(post_title)}</b></h1>
-				
-                <p>Written by: ${fn:escapeXml(post_user.nickname)}</p>
-                
-                <!--Check to see if date is formatted correctly-->
-                <p>Posted on: ${fn:escapeXml(post_date)}</p>
+    	if (user != null) {
+      		pageContext.setAttribute("user", user);
+	%>
+			<p>Hello, ${fn:escapeXml(user.nickname)}! (You can
+			<a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">sign out</a>.)</p>
+			<form action="/sign" method="post">	
+			  <div>
+			  	<h3>TITLE</h3>
+			  	<textarea id="title_input" name="title" rows="1" cols="60" maxlength="60"></textarea>
+			  </div>
+			 
+		      <div>
+		      	<h3>CONTENT</h3>
+		      	<textarea id = "content_input" name="content" rows="10" cols="60"></textarea></div>
+		
+		      <div><input type="submit" value="Post" /></div>    
+		    </form>
+			
+	<%
+    	} else {
+	%>
+			<p>Hello!
+	
+			<a href="<%= userService.createLoginURL(request.getRequestURI()) %>">Sign in</a>
+	
+			to be able to post.</p>
+	<%
+    	}
+	%>
 
 
-            <p>${fn:escapeXml(post_content)}</p>
-
-            <%
-
-        }
-
-    }
-
-%>
-
- 
-
-    <form action="/ofysign" method="post">
-
-      <div><textarea name="content" rows="3" cols="60"></textarea></div>
-
-      <div><input type="submit" value="Post Greeting" /></div>
-
-      <input type="hidden" name="guestbookName" value="${fn:escapeXml(guestbookName)}"/>
-
-    </form>
-
+    
  
 
   </body>

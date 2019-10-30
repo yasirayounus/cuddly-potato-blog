@@ -14,7 +14,7 @@ public class Post implements Comparable<Post> {
 	@Index Date date;
 	@Index String content;
 	@Index String title;
-
+	private Post() {}
 	public Post(String title, User user, Date date, String content ) {
 		this.user = user;
 		this.title = title;
@@ -40,9 +40,9 @@ public class Post implements Comparable<Post> {
 	 @Override
 	 public int compareTo(Post other) {
 	        if (date.after(other.date)) {
-	            return 1;
-	        } else if (date.before(other.date)) {
 	            return -1;
+	        } else if (date.before(other.date)) {
+	            return 1;
 	        }
 	        return 0;
 	     }

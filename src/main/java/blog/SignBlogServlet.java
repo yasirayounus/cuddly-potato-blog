@@ -38,8 +38,8 @@ public class SignBlogServlet extends HttpServlet {
         Post post = new Post(title, user, date, content);
         ofy().save().entity(post).now();
      
-        //Not sure if needed, come back to this line
-        //resp.sendRedirect("/ofyguestbook.jsp?guestbookName=" + guestbookName);
+       
+        resp.sendRedirect("/blog.jsp");
 
     }
 

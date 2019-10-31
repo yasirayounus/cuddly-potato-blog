@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cronentries>
+  <cron>
+    <url>/cronjob</url>
+    <description>Newsletter with new posts has been sent</description>
+    <schedule>every day 15:41s</schedule>
+    <timezone>America/Chicago</timezone>
+  </cron>
+</cronentries>

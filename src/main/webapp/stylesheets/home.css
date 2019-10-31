@@ -90,3 +90,17 @@ hr.post_separator{
 	margin-top: -4px;
 	
 }
+.subscribe{
+	text-align: center;
+}
+input[type=submit], .button{
+  background-color: #B26D24;
+  border: none;
+  color: white;
+  padding: 10px 50px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}

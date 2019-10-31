@@ -14,8 +14,7 @@ public class BlogServlet extends HttpServlet {
 		User user = userService.getCurrentUser();
 		
 		if (user !=null) {
-			resp.setContentType("text/plain");
-			resp.getWriter().println("Hello," +user.getNickname());		
+			resp.sendRedirect("/login.jsp");	
 		}
 		else {
 			resp.sendRedirect(userService.createLoginURL(req.getRequestURI()));

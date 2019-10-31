@@ -47,23 +47,26 @@
 	    </ul>
 	    <hr>
 	    
+	    
+	    <h3 class="subscribe">Join the Potato Gang</h3>
+	   
+	    
+	   
 	   	<%
-	   	
 	   		
 		    ObjectifyService.register(Emails.class);
-		
+			
 			List<Emails> emails = ObjectifyService.ofy().load().type(Emails.class).list(); 
 			System.out.println(emails.toString());
 			
 			UserService userService = UserServiceFactory.getUserService();
 	    	User user = userService.getCurrentUser();
-
+			
+	    	pageContext.setAttribute("user", user);
+	    	
 	    	if (user == null){
 	    		%>
-				<p>Hello!
-		
-				<a href="<%= userService.createLoginURL(request.getRequestURI()) %>">Sign in</a>
-		
+				<p class="subscribe"><a href="<%= userService.createLoginURL(request.getRequestURI()) %>">Sign in</a>	
 				to subscribe or unsubscribe.</p>
 				<%
 	    		
@@ -74,7 +77,10 @@
 		    	if (!emails.isEmpty() && email != null){
 		    		//this email is in the subscription list
 		    		%>
-				    	<form action="/newsletter" method="post">		
+		    			<p class="subscribe">You are already subscribed in as ${fn:escapeXml(user.nickname)}!<br>
+		    			<a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">Sign out</a> to use subscribe with another email.
+		    			<br>Or click unsubscribe below to stop receiving potato updates.</p>
+				    	<form class="subscribe" action="/newsletter" method="post">		
 					      <div><input type="submit" value="Unsubscribe" /></div>   
 					    </form>
 			    			    		
@@ -82,7 +88,10 @@
 		    	} else {
 		    		
 		    		%>
-				    	<form action="/newsletter" method="post">		
+		    			<p class="subscribe">Do you want to get your daily potato updates? Click subscribe below!</p>
+		    			<p class="subscribe">You are signed in as ${fn:escapeXml(user.nickname)}! <br>
+		    			<a href="<%= userService.createLogoutURL(request.getRequestURI()) %>">Sign out</a> to use subscribe with another email.</p>
+				    	<form class="subscribe" action="/newsletter" method="post">		
 					      <div><input type="submit" value="Subscribe" /></div>   
 					    </form>
 			    			    		

@@ -37,11 +37,11 @@
 		  	
 	  	</div>
 	  	<hr>
-	    <ul id = menu>
-	    	<li class = menu><a href='/'>HOME</a></li>
-	    	<li class = menu>POSTS</li>
-	    	<li class = menu><a href='/blog.jsp'>CREATE POST</a></li>
-	    	<li class = menu>SUBSCRIBE</li>
+	    <ul id = "menu">
+	    	<li class = "menu"><a href='/'>HOME</a></li>
+	    	<li class = "menu"><a href='/posts.jsp'>ALL POSTS</a></li>
+	    	<li class = "menu"><a href='/blog.jsp'>CREATE POST</a></li>
+	    	<li class = "menu"><a href='/newsletter.jsp'>SUBSCRIBE</a></li>
 	    	<li class = "menu"><a href='/blog'>LOGIN</a></li>
 	    </ul>
 	    <hr>
@@ -74,7 +74,7 @@
 	            		pageContext.setAttribute("post_title", post.getTitle());
 	            		
 	            		c++;
-        			}
+        			
     		
         	%>
        				<div class="recent_posts">
@@ -89,7 +89,9 @@
 		            <p>${fn:escapeXml(post_content)}</p>	
 		            <hr class="post_separator">
 		            </div>
+		            
         <% 
+        			}
         		}
     		}
         %>

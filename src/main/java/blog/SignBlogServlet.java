@@ -39,7 +39,7 @@ public class SignBlogServlet extends HttpServlet {
         ofy().save().entity(post).now();
      
        
-        resp.sendRedirect("/blog.jsp");
+        resp.sendRedirect("/home.jsp");
 
     }
 

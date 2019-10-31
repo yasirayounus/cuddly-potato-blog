@@ -37,8 +37,38 @@
     </servlet-mapping>
     
     
+	<servlet>
+        <servlet-name>GAEJCronServlet</servlet-name>
+
+        <servlet-class>blog.GAEJCronServlet</servlet-class>
+
+    </servlet>
+
+    <servlet-mapping>
+
+        <servlet-name>GAEJCronServlet</servlet-name>
+
+        <url-pattern>/cronjob</url-pattern>
+
+    </servlet-mapping>
     
     
+    <servlet>
+        <servlet-name>NewsletterServlet</servlet-name>
+
+        <servlet-class>blog.NewsletterServlet</servlet-class>
+
+    </servlet>
+
+    <servlet-mapping>
+
+        <servlet-name>NewsletterServlet</servlet-name>
+
+        <url-pattern>/newsletter</url-pattern>
+
+    </servlet-mapping>
+ 
+ 
    
   
   <welcome-file-list>

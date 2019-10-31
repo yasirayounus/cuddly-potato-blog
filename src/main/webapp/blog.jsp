@@ -37,11 +37,11 @@
 		  	
 	  	</div>
 	  	<hr>
-	    <ul id = menu>
-	    	<li class = menu><a href='/'>HOME</a></li>
-	    	<li class = menu>POSTS</li>
-	    	<li class = menu><a href='/blog.jsp'>CREATE POST</a></li>
-	    	<li class = menu>SUBSCRIBE</li>
+	    <ul id = "menu">
+	    	<li class = "menu"><a href='/'>HOME</a></li>
+	    	<li class = "menu"><a href='/posts.jsp'>ALL POSTS</a></li>
+	    	<li class = "menu"><a href='/blog.jsp'>CREATE POST</a></li>
+	    	<li class = "menu"><a href='/newsletter.jsp'>SUBSCRIBE</a></li>
 	    	<li class = "menu"><a href='/blog'>LOGIN</a></li>
 	    </ul>
 	    <hr>
@@ -66,8 +66,10 @@
 		      	<h3>CONTENT</h3>
 		      	<textarea id = "content_input" name="content" rows="10" cols="60"></textarea></div>
 		
-		      <div><input type="submit" value="Post" /></div>    
+		      <div><input type="submit" value="Post" /></div>   
+		      <div><input type="reset" value="Cancel" /></div>  
 		    </form>
+		    
 			
 	<%
     	} else {

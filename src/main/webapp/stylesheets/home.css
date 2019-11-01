@@ -93,7 +93,7 @@ hr.post_separator{
 .subscribe{
 	text-align: center;
 }
-input[type=submit], .button{
+input[type=submit], button{
   background-color: #B26D24;
   border: none;
   color: white;

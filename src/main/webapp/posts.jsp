@@ -41,8 +41,8 @@
 	    	<li class = "menu"><a href='/'>HOME</a></li>
 	    	<li class = "menu"><a href='/posts.jsp'>ALL POSTS</a></li>
 	    	<li class = "menu"><a href='/blog.jsp'>CREATE POST</a></li>
-	    	<li class = "menu"><a href='/newsletter.jsp'>SUBSCRIBE</a></li>
-	    	<li class = "menu"><a href='/blog'>LOGIN</a></li>
+	    	<li class = "menu"><a href='/newsletter.jsp'>SUBSCRIBE/UNSUBSCRIBE</a></li>
+	    	<li class = "menu"><a href='/blog'>LOGIN/LOGOUT</a></li>
 	    </ul>
 	    <hr>
 	    
@@ -63,15 +63,15 @@
         	<%
         		for (Post post : posts) {
 					
-	            		pageContext.setAttribute("post_content", post.getContent());
+	            	pageContext.setAttribute("post_content", post.getContent());
 					
-	            		pageContext.setAttribute("post_user", post.getUser());
+	            	pageContext.setAttribute("post_user", post.getUser());
 	            
-	            		pageContext.setAttribute("post_date", post.getDate());
+	            	pageContext.setAttribute("post_date", post.getDate());
 	            
-	            		pageContext.setAttribute("post_title", post.getTitle());
+	            	pageContext.setAttribute("post_title", post.getTitle());
 	            		
-    		
+	            	
         	%>
        				<div class="recent_posts">
 					<h3><b>${fn:escapeXml(post_title)}</b></h3>
@@ -80,12 +80,33 @@
 		                
 		            <!--Check to see if date is formatted correctly-->
 		            <p class="post_info">Posted on: ${fn:escapeXml(post_date)}</p>
-		
-		
+		            
 		            <p>${fn:escapeXml(post_content)}</p>	
-		            <hr class="post_separator">
+		            
 		            </div>
-        <% 
+			<% 
+					UserService userService = UserServiceFactory.getUserService();
+	        	    User user = userService.getCurrentUser();
+	        	    if (user!= null)
+    				if (post.getUser().getEmail().equals(user.getEmail())) {
+    		%>			
+    				<button onclick="deletePost()" >	
+		      			Delete Post
+		    		</button>
+		    		<hr class="post_separator">
+		    		<script>
+		    			function deletePost() {
+		    			  <%ObjectifyService.ofy().delete().entity(post).now();%>
+		    			  location.reload();
+		    			}
+		    		</script>
+    					    
+    			
+    				
+	
+		            
+        <%		
+        			}
         		}
     		}
         %>

@@ -42,8 +42,8 @@
 	    	<li class = "menu"><a href='/'>HOME</a></li>
 	    	<li class = "menu"><a href='/posts.jsp'>ALL POSTS</a></li>
 	    	<li class = "menu"><a href='/blog.jsp'>CREATE POST</a></li>
-	    	<li class = "menu"><a href='/newsletter.jsp'>SUBSCRIBE</a></li>
-	    	<li class = "menu"><a href='/blog'>LOGIN</a></li>
+	    	<li class = "menu"><a href='/newsletter.jsp'>SUBSCRIBE/UNSUBSCRIBE</a></li>
+	    	<li class = "menu"><a href='/blog'>LOGIN/LOGOUT</a></li>
 	    </ul>
 	    <hr>
 	    

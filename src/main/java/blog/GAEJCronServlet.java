@@ -41,8 +41,8 @@ public class GAEJCronServlet extends HttpServlet {
 			List<Emails> emails = ObjectifyService.ofy().load().type(Emails.class).list();
 			List<Post> post = ObjectifyService.ofy().load().type(Post.class).list();
 			
+			_logger.info(emails.get(0).toString());
 			
-			_logger.info(emails.toString());
 			
 			//Put your logic here
 			Properties props = new Properties();
@@ -50,16 +50,19 @@ public class GAEJCronServlet extends HttpServlet {
 			String email_content = "Hi there! Thank you for being a Cuddly Potato Reader! We value your time and dedication! Here are all the new posts in the last 24 hours: \n";
 			String email_posts = "";
 			Collections.sort(post); 
-			int c = 0;
+			
 
 			Date yesterday = new Date(System.currentTimeMillis() - TimeUnit.HOURS.toMillis(24));
-			while (post.get(c).getDate().after(yesterday)) {
-				
-				email_posts+=post.get(c).getTitle() +"\n"+ post.get(c).getUser().getEmail() + "\n"
-						+ post.get(c).getDate().toString() + "\n" + post.get(c).getContent() + "\n\n";
-			}
-			if (!email_posts.equals("")) {
 			
+			for(int c = 0; c < post.size(); c++) {
+				if (post.get(c).getDate().after(yesterday)) {
+					
+					email_posts+=post.get(c).getTitle() +"\n"+ post.get(c).getUser().getEmail() + "\n"
+							+ post.get(c).getDate().toString() + "\n" + post.get(c).getContent() + "\n\n";
+				}
+			}	
+			if (!email_posts.equals("")) {	
+				
 				for (Emails email: emails)
 				{	try {
 					  Message msg = new MimeMessage(session);

@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="java.io.IOException"/>
-<fullyQualifiedTypeName name="com.google.appengine.api.users.UserServiceFactory"/>
-<fullyQualifiedTypeName name="com.google.appengine.api.users.UserService"/>
-<fullyQualifiedTypeName name="com.googlecode.objectify.ObjectifyService"/>
-<fullyQualifiedTypeName name="java.util.List"/>
-</qualifiedTypeNameHistroy>
